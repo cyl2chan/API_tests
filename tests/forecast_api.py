@@ -6,3 +6,4 @@ def get_forecast(api: APIRequestContext, latitude, longitude, hourly="temperatur
     params = {"latitude": latitude, "longitude": longitude, "hourly": hourly, **extra}
     return api.get(FORECAST, params=params)
 
+
