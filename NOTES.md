@@ -117,3 +117,15 @@ FAILED tests/test_forecast.py::test_forecast_success[-33.8688-151.2093-Sydney] -
     2. Teammates will understand
     3. Also, better to add URL which is not found
 
+
+Step 8
+
+1. your Compose tests ran against an API inside your own containers. These run against a public service on the internet. What new reasons could make them fail in CI that have nothing to do with your code?
+It works when i entered py -m pytest -s ./tests/test_forecast.py in terminal in local machine.
+But same command doesn’t work in Github Actions workflow. Use py -m pytest -s ./tests/test_forecast.py instead. 
+
+That’s becos my Windows computer uses Windows Python launcher, while GitHub Actions setup-python b4 running the tests. 
+
+Other reasons:
+Different dependencies 
+Service outage, network problems
