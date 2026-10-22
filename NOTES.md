@@ -87,3 +87,33 @@ Latitude: decimal places
 
 Sydney has a negative latitude while others have positive ones. 
 A fifth city can be in a different continent, like Africa and South America, to add something new.
+
+
+Step 7
+
+1. Change FORECAST to "/v1/forcast". What status comes back? Does the failure message tell you what is wrong?
+
+404. 
+AssertionError: assert 404 == 200
+AssertionError: Sydney: 404 {"reason":"Not Found","error":true}
+
+2. Change your expected unit to "°F". Does the failure tell you which city failed?
+
+All cities failed. 
+AssertionError: assert '°C' == '°F'
+
+3. Run with OPEN_METEO_BASE_URL=https://example.com. What does a "wrong environment" failure look like?
+E       AssertionError: Sydney: 404 <!doctype html><html lang=en><head><meta charset=utf-8><link rel=icon href=data:,><meta name=viewport content="width=device-width,initial-scale=1"><title>Example Domain</title><style>html{color-scheme:light dark;background:light-dark(#eee,#222)}body{font:16px/1.6 system-ui,sans-serif;max-width:26em;margin:auto;padding:25vh 2em 2em;text-align:center}</style></head><body><p>This domain is for use in documentation examples without needing permission. This is not a service; avoid relying on it for testing and monitoring purposes.</p><script src=/s.js></script></body></html>
+E         
+E       assert 404 == 200
+E        +  where 404 = <APIResponse url='https://example.com/v1/forecast?latitude=-33.8688&longitude=151.2093&hourly=temperature_2m' status=404 status_text='Not Found'>.status
+
+tests\test_forecast.py:40: AssertionError
+
+FAILED tests/test_forecast.py::test_forecast_success[-33.8688-151.2093-Sydney] - AssertionError: Sydney: 404 <!doctype html><html lang=en><head><meta charset=utf-8><link rel=icon href=data:,><meta ...
+
+4. Question: for each failure, if it happened in CI at 2 a.m., could a teammate understand the problem from the output alone? If not, what would you add to the assert message?
+    1. Better to add the URL which is not found
+    2. Teammates will understand
+    3. Also, better to add URL which is not found
+
