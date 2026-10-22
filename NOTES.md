@@ -1,3 +1,5 @@
+Phase 1
+
 Step 1: Look at an API call in the browser (no code)
 
 Questions (answer in NOTES.md):
@@ -129,3 +131,20 @@ That’s becos my Windows computer uses Windows Python launcher, while GitHub Ac
 Other reasons:
 Different dependencies 
 Service outage, network problems
+
+
+Phase 2
+
+Step 1
+
+1. Why does temperature_2m allow "null" as well as "number"? The docs don't say whether nulls can appear. Was allowing it the right call? Argue your answer.
+
+It’s a right call, becos it can be null there may not be temperature available yet for reasons. 
+
+2. What can a schema catch that your Phase 1 checks can't? What can your Phase 1 checks catch that a schema can't? (Think about the °C check.)
+
+Schema can catch the data isn’t the correct type. 
+Phase 1 can check:
+- units, whether length of time and temperature are same, invalid values, correct spelling, range of values of longitude and latitude 
+
+

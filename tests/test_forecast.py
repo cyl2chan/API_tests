@@ -26,6 +26,7 @@ import pytest
 from forecast_api import get_forecast
 
 CITIES = [
+    #(49.2497, -123.1193, "Vancouver"),
     (49.2497, -123.1193, "Vancouver"),
     (41.8781, -87.6298, "Chicago"),
     (35.6762, 139.6503, "Tokyo"),
@@ -86,5 +87,7 @@ def test_valid_lat(api, valid_lat):
 def test_longitude_range(api, test_long_val):
     response = get_forecast(api, 0, test_long_val)
     assert response.status == 200
-
 #valid range of longitude is -180 to 180
+
+
+
