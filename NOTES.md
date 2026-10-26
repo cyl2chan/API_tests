@@ -148,3 +148,36 @@ Phase 1 can check:
 - units, whether length of time and temperature are same, invalid values, correct spelling, range of values of longitude and latitude 
 
 
+Step 3
+
+The docs say forecast_days accepts 0 to 16, with a default of 7. 
+Before writing any code, add a small table to NOTES.md 
+a. listing every value you plan to test and the result you expect for each. 
+b. Think about the edges, a value inside the range, leaving the parameter out, 
+and input that isn't a number at all.
+
+values to test and expected result: 
+    -1 rejected
+    0 normal
+    3 normal
+    7 normal
+    15 normal? Any data?
+    16 normal? Any data?
+    17 rejected
+    20 rejected
+    abc rejected
+    ; rejected
+
+1. Does your schema from Step 1 still pass when forecast_days=0? If not, which one is wrong, the schema or the API? What would you do about it on a real team?
+No, doesn’t pass.
+E           jsonschema.exceptions.ValidationError: [] should be non-empty
+E           
+E           Failed validating 'minItems' in schema['properties']['hourly']['properties']['time']:
+E               {'type': 'array', 'items': {'type': 'string'}, 'minItems': 1}
+E           
+E           On instance['hourly']['time']:
+E               []
+API is wrong. There’s no need to allow forecast days to be 0 becos it’s not showing any data of the weather and temperature. 
+
+
+

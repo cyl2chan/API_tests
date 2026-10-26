@@ -10,7 +10,6 @@ def test_forecast_macthes_schema(api):
 
 
 CITIES = [
-    #(49.2497, -123.1193, "Vancouver"),
     (49.2497, -123.1193, "Vancouver"),
     (41.8781, -87.6298, "Chicago"),
     (35.6762, 139.6503, "Tokyo"),
