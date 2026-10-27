@@ -209,3 +209,20 @@ Question: why might a timing check against a public API be flaky? Should it run 
 
 Could be due to server or network delays, wifi delays, or computer or VM used to run the test is too slow, which cause response time sometimes too slow to pass response time tests and make test flaky. 
 YEs, it should run on every push to Github Actions. The response time in Github Actions may be different. Also, additional tests outside of response time tests can affect results of response time tests. So we should run it on every push to Github Actions. 
+
+
+Reflection
+
+1. What is the difference between testing an API and testing a UI? What can each catch that the other can't?
+
+API test only tests the backend, while UI test tests both the backend and frontend when two are connected. 
+UI tests can catch errors or bugs in the user interface but API tests can’t test this. 
+API tests can test status code, response headers, units, error response details, response body format	. If UI test tests what API tests are supposed to test, it could be much slower. 
+
+2. Which test was hardest to write, and why?
+
+	API tests are harder to write. API tests require more testing of data in different ways. 
+
+3. If you had one more day on this suite, what would you test next?
+
+Weather code corresponds to the weather correctly in the API doc
