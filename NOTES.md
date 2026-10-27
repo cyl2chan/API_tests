@@ -180,4 +180,32 @@ E               []
 API is wrong. There’s no need to allow forecast days to be 0 becos it’s not showing any data of the weather and temperature. 
 
 
+Step 4
 
+1. Print every header from one response (response.headers). In NOTES.md, list them and say for each whether it is worth asserting in a test, and why.
+
+response headers: {'date': 'Mon, 26 Oct 2026 12:51:21 GMT', 'content-type': 'application/json; charset=utf-8', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'content-encoding': 'deflate'}
+
+Date: yes. We need to know what day the forecast days start and if it’s as expected. 
+Content-type: yes. We need to know the content-type to know how to translate the data into one that we can read. 
+Transfer-encoding: no. The data content isn’t affected how the data is transferred from server to client. 
+Connection: no. Doesn’t affect data content. 
+Content-encoding: no. Doesn’t affect data content. 
+
+
+Step 5
+
+1. Run the test five times and record the times. Is 2 seconds a good threshold? Pick your own and justify it.
+
+Record test time (the only test in the file): 0.17s, 0.15s, 0.16s, 0.16s, 0.15s
+Time of time test with def test_forecast_csv(playwright: Playwright)in same file:
+0.10s, 0.08s, 0.09s, 0.08s, 0.08s
+Time of time test with def test_forecast_csv(playwright: Playwright) and def test_forecast_days in same file:
+		0.45s, 0.45s, 0.45s, 0.44s, 0.46s
+All tests of response time above are below 2s. 2 seconds is a good threshold. However, if a older and slower laptop is used to perform the tests, or quality of network or wifi is low and slow, response test time could be higher and threshold could be higher.
+
+2. Run pytest -m "not performance" and confirm the timing test is skipped.
+Question: why might a timing check against a public API be flaky? Should it run on every push in GitHub Actions? Decide, change your workflow to match, and explain your choice in NOTES.md.
+
+Could be due to server or network delays, wifi delays, or computer or VM used to run the test is too slow, which cause response time sometimes too slow to pass response time tests and make test flaky. 
+YEs, it should run on every push to Github Actions. The response time in Github Actions may be different. Also, additional tests outside of response time tests can affect results of response time tests. So we should run it on every push to Github Actions. 
